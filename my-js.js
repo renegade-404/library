@@ -2,11 +2,11 @@ const myLibrary = [];
 const columnNames = ['Name', 'Author', 'Pages', 'Read'];
 const tableButton = document.body.querySelector(".create-table");
 const addLibButton = document.body.querySelector(".add-to-lib");
+const buttons = document.body.querySelectorAll('button');
 
 const tableDiv = document.createElement('div');
 tableDiv.classList.add('table-div');
 document.body.appendChild(tableDiv);
-
 
 function Book(arr) {
     this.id = crypto.randomUUID(),
@@ -46,7 +46,7 @@ function addToTable() {
     tbody.appendChild(tr);
     const removeButton = document.createElement('button');
     removeButton.innerText = "-";
-    removeButton.classList.add('book-remove');
+    
 
     const latestBook = myLibrary[myLibrary.length - 1];
     
@@ -56,8 +56,18 @@ function addToTable() {
       data.innerText = latestBook[text];
       tr.appendChild(data); 
       tr.appendChild(removeButton);
+      removeButton.classList.add('book-remove', `${latestBook.name}`);
+      tr.classList.add(`${latestBook.name}`);
   }
 
+  removeButton.addEventListener('click', (e)=> {
+    for (let i = 0; i < myLibrary.length; i++) {
+      if (e.target.classList.contains(myLibrary[i].name)) {
+        myLibrary.splice(i, 1);
+        tbody.removeChild(tr);
+      }
+    }
+ })
 }  
 
 function addToLibrary() {
