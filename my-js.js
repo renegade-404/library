@@ -3,6 +3,10 @@ const columnNames = ['Name', 'Author', 'Pages', 'Read'];
 const tableButton = document.body.querySelector(".create-table");
 const addLibButton = document.body.querySelector(".add-to-lib");
 
+const tableDiv = document.createElement('div');
+tableDiv.classList.add('table-div');
+document.body.appendChild(tableDiv);
+
 
 function Book(arr) {
     this.id = crypto.randomUUID(),
@@ -19,7 +23,7 @@ function Book(arr) {
 
 function createTable() {
     const table = document.createElement('table');
-    document.body.appendChild(table);
+    tableDiv.appendChild(table);
 
     const thead = table.createTHead();
     const tbody = table.createTBody();
@@ -38,7 +42,12 @@ function createTable() {
 function addToTable() {
     const tbody = document.querySelector('tbody');
     const tr = document.createElement('tr');
+    tr.style.position = 'relative';
     tbody.appendChild(tr);
+    const removeButton = document.createElement('button');
+    removeButton.innerText = "-";
+    removeButton.classList.add('book-remove');
+
     const latestBook = myLibrary[myLibrary.length - 1];
     
     for (let text in latestBook) {    
@@ -46,6 +55,7 @@ function addToTable() {
       let data = document.createElement('td');
       data.innerText = latestBook[text];
       tr.appendChild(data); 
+      tr.appendChild(removeButton);
   }
 
 }  
