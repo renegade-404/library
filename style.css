@@ -55,3 +55,8 @@ body {
   position: absolute;
   margin-left: 10px;
 }
+
+.unread-book {
+  position: absolute;
+  margin-left: 70px;
+}
