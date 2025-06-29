@@ -2,7 +2,6 @@ const myLibrary = [];
 const columnNames = ['Name', 'Author', 'Pages', 'Read'];
 const tableButton = document.body.querySelector(".create-table");
 const addLibButton = document.body.querySelector(".add-to-lib");
-const buttons = document.body.querySelectorAll('button');
 
 const tableDiv = document.createElement('div');
 tableDiv.classList.add('table-div');
@@ -30,9 +29,9 @@ function createTable() {
     
        
     for (let i = 0; i < columnNames.length; i++) {
-        let header = document.createElement('th');
+        const header = document.createElement('th');
         header.setAttribute("scope", "col");
-        let text = document.createTextNode(columnNames[i]);
+        const text = document.createTextNode(columnNames[i]);
         header.appendChild(text);
         thead.appendChild(header);
     }
@@ -40,41 +39,65 @@ function createTable() {
 }
 
 function addToTable() {
-    const tbody = document.querySelector('tbody');
-    const tr = document.createElement('tr');
-    tr.style.position = 'relative';
-    tbody.appendChild(tr);
-    const removeButton = document.createElement('button');
-    removeButton.innerText = "-";
-    
+  const tbody = document.querySelector('tbody');
+  const tr = document.createElement('tr');
+  tr.style.position = 'relative';
+  tbody.appendChild(tr);
 
-    const latestBook = myLibrary[myLibrary.length - 1];
-    
-    for (let text in latestBook) {    
-      if (text == "id") continue;
-      let data = document.createElement('td');
-      data.innerText = latestBook[text];
-      tr.appendChild(data); 
-      tr.appendChild(removeButton);
-      removeButton.classList.add('book-remove', `${latestBook.name}`);
-      tr.classList.add(`${latestBook.name}`);
+  const latestBook = myLibrary[myLibrary.length - 1];
+
+  // Add book data
+  for (let key in latestBook) {
+    if (key === 'id') continue;
+
+    const td = document.createElement('td');
+    td.innerText = latestBook[key];
+    tr.appendChild(td);
   }
 
-  removeButton.addEventListener('click', (e)=> {
-    for (let i = 0; i < myLibrary.length; i++) {
-      if (e.target.classList.contains(myLibrary[i].name)) {
-        myLibrary.splice(i, 1);
-        tbody.removeChild(tr);
-      }
+  const unreadButton = document.createElement('button');
+  unreadButton.innerText = 'unread';
+  unreadButton.dataset.bookId = latestBook.id;
+  unreadButton.classList.add('unread-book');
+  tr.appendChild(unreadButton); 
+
+  // Create and attach remove button
+  const removeButton = document.createElement('button');
+  removeButton.innerText = 'delete';
+  removeButton.classList.add('book-remove');
+  removeButton.dataset.bookId = latestBook.id; // more reliable than name!
+  tr.appendChild(removeButton);
+
+  removeButton.addEventListener('click', (e) => {
+    const bookId = e.target.dataset.bookId;
+
+    // Remove from array
+    const index = myLibrary.findIndex(book => book.id === bookId);
+    if (index !== -1) {
+      myLibrary.splice(index, 1);
     }
- })
-}  
+
+    // Remove row from DOM
+    tbody.removeChild(tr);
+  });
+  
+  unreadButton.addEventListener('click', (e) => {
+    const tds = tr.children;
+    const readTd = tds[3];
+    const bookId = e.target.dataset.bookId;
+    const index = myLibrary.findIndex(book => book.id === bookId);
+
+    // change status
+    myLibrary[index].read = myLibrary[index].read === "read" ? "unread" : "read";
+    readTd.innerText = readTd.innerText === "read" ? "unread" : "read";
+    unreadButton.innerText = unreadButton.innerText === "read" ? "unread" : "read";
+  })
+}
 
 function addToLibrary() {
   const userInput = document.querySelector("#book-info").value.split(',');
-  
+
   addBookToLibrary(userInput);
-  
 }
 
 tableButton.addEventListener('click', () => {
