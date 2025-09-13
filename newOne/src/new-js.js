@@ -1,83 +1,82 @@
 import "./new-style.css";
 
 class GameEntry {
-    #game;
-    #publisher;
-    #genre;
-    #played;
+  #game;
+  #publisher;
+  #genre;
+  #played;
 
-    constructor({ game, publisher, genre, played }) {
-        this.#game = game;
-        this.#publisher = publisher;
-        this.#genre = genre;
-        this.#played = played;
-        this.id = crypto.randomUUID();
-    }
+  constructor({ game, publisher, genre, played }) {
+    this.#game = game;
+    this.#publisher = publisher;
+    this.#genre = genre;
+    this.#played = played;
+    this.id = crypto.randomUUID();
+  }
 
-    getEntryDetails() {
-        return {game: this.#game,
-                publisher: this.#publisher,
-                genre: this.#genre,
-                played: this.#played}
+  getEntryDetails() {
+    return {
+      game: this.#game,
+      publisher: this.#publisher,
+      genre: this.#genre,
+      played: this.#played
     }
+  }
 
-    getId() {
-        return this.id;
-    }
+  getId() {
+    return this.id;
+  }
 }
 
-const library = function Library() {
-    const inputsData = document.querySelectorAll("input");
-    const userInputs = {};
-    
-    const addButton = document.querySelector(".add");
-    const removeButton = document.querySelector(".remove");
-    
-    const inputsAddHandler = function() {
-        for (let key of inputsData) {
-                console.log(userInputs)
-                // if (key.value == "") throw Error("invalid input");
-                userInputs[key.id] = key.value;
-            }
-        console.log(userInputs)
-        
-        addToTable();
+(() => {
+  const inputsData = document.querySelectorAll("input");
+  const userInputs = {};
+
+  const addButton = document.querySelector(".add");
+  const removeButton = document.querySelector(".remove");
+
+  const inputsAddHandler = function () {
+    for (let key of inputsData) {
+      userInputs[key.id] = key.value;
     }
 
-    function addToTable() {
-        const newGame = new GameEntry(userInputs);
-        const gameData = newGame.getEntryDetails();
+    addToTable();
+  }
 
-        const tbody = document.querySelector("tbody");
-        const row = document.createElement("tr");
-        row.style.position = 'relative';
-        row.dataset.id = newGame.getId();
-        tbody.appendChild(row);
-        
-        for (let data in gameData) {
-            const td = document.createElement('td');
-            td.innerText = gameData[data];
-            row.appendChild(td);
-        }
+  function addToTable() {
+    const newGame = new GameEntry(userInputs);
+    const gameData = newGame.getEntryDetails();
 
-        const checkBox = document.createElement("input");
-        checkBox.setAttribute("type", "checkbox");
-        checkBox.id = newGame.getId();
-        row.appendChild(checkBox);
+    const tbody = document.querySelector("tbody");
+    const row = document.createElement("tr");
+    row.style.position = 'relative';
+    row.dataset.id = newGame.getId();
+    tbody.appendChild(row);
+
+    for (let data in gameData) {
+      const td = document.createElement('td');
+      td.innerText = gameData[data];
+      row.appendChild(td);
     }
 
-    function removeFromLibrary() {
-        const checkedPositions = document.querySelectorAll("input[type='checkbox']:checked");
+    const checkBox = document.createElement("input");
+    checkBox.setAttribute("type", "checkbox");
+    checkBox.id = newGame.getId();
+    row.appendChild(checkBox);
+  }
 
-        for (let checkbox of checkedPositions) {
-            let row = checkbox.closest("tr");
-            if (row) row.remove();
+  function removeFromLibrary() {
+    const checkedPositions = document.querySelectorAll("input[type='checkbox']:checked");
 
-        }
+    for (let checkbox of checkedPositions) {
+      let row = checkbox.closest("tr");
+      if (row) row.remove();
+
     }
+  }
 
-    addButton.addEventListener("click", inputsAddHandler);
-    
-    removeButton.addEventListener("click", removeFromLibrary);
+  addButton.addEventListener("click", inputsAddHandler);
 
-}();
+  removeButton.addEventListener("click", removeFromLibrary);
+
+})();
