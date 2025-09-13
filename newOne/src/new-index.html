@@ -1,29 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
 </head>
+
 <body>
-  <div>
-    <label for="game">Game:</label>
-    <input type="text" id="game"/>
+  <div class="inputs-container">
+    <div>
+      <label for="game">Game:</label>
+      <input type="text" id="game" />
+    </div>
+    <div>
+      <label for="publisher">Publisher:</label>
+      <input type="text" id="publisher" />
+    </div>
+    <div>
+      <label for="genre">Genre:</label>
+      <input type="text" id="genre" />
+    </div>
+    <div>
+      <label for="played">Played:</label>
+      <input type="text" id="played" />
+    </div>
   </div>
-  <div>
-    <label for="publisher">Publisher:</label>
-    <input type="text" id="publisher"/>
+  <div class="buttons-container">
+    <button class="add off">Add</button>
+    <button class="remove">Remove</button>
   </div>
-  <div>
-    <label for="genre">Genre:</label>
-    <input type="text" id="genre"/>
-  </div>
-  <div>
-    <label for="played">Played:</label>
-    <input type="text" id="played"/>
-  </div>
-  <div><button class="add off">Add</button></div>
-  <div><button class="remove">Remove</button></div>
   <table>
     <caption>
       My games
@@ -31,4 +37,5 @@
     <tbody></tbody>
   </table>
 </body>
+
 </html>
