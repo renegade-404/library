@@ -1,3 +1,5 @@
+import "./new-style.css";
+
 class GameEntry {
     #game;
     #publisher;

@@ -1,8 +1,8 @@
 {
-  "name": "dropdown-menu-toggle",
+  "name": "library",
   "version": "1.0.0",
-  "description": "toggle menu implementer",
-  "main": "index.js",
+  "description": "game library",
+  "main": "new-js.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack serve --open --config webpack.dev.js",
@@ -10,15 +10,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/renegade-404/toggle-menu-implementer.git"
+    "url": "git+https://github.com/renegade-404/library.git"
   },
   "keywords": [],
   "author": "maru <mypcisrenegade@gmail.com>",
   "license": "ISC",
   "bugs": {
-    "url": "git+https://github.com/renegade-404/toggle-menu-implementer/issues"
+    "url": "git+https://github.com/renegade-404/library/issues"
   },
-  "homepage": "git+https://github.com/renegade-404/toggle-menu-implementer#readme",
+  "homepage": "git+https://github.com/renegade-404/library#readme",
   "devDependencies": {
     "css-loader": "^7.1.2",
     "html-loader": "^5.1.0",

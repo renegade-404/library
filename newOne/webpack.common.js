@@ -3,12 +3,12 @@ const path = require('path');
 
  module.exports = {
    entry: {
-     app: './src/index.js',
+     app: './src/new-js.js',
    },
    plugins: [
      new HtmlWebpackPlugin({
        title: 'Production',
-       template: "./src/template.html",
+       template: "./src/new-index.html",
      }),
    ],
    output: {
