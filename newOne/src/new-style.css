@@ -1,22 +1,84 @@
-table {
-  border-collapse: collapse;
-  border: 2px solid rgb(140 140 140);
-  font-size: 0.8rem;
-  letter-spacing: 1px;
+/*normalize*/
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+* {
+  margin: 0;
+}
+
+body {
+  font-family: var(--main-font), var(--fallback-fonts);
+  font-size: 1.2rem;
+  width: 100vw;
+  height: 100vh;
+  margin-top: 0.5rem;
+  background-color: #F9F3EF;
+
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  align-items: center;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+
+}
+
+img, picture, video, canvas, svg {
+  display: block;
+  max-width: 100%;
+}
+
+input, button, textarea, select {
+  font: inherit;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+p {
+  text-wrap: pretty;
+}
+h1, h2, h3, h4, h5, h6 {
+  text-wrap: balance;
+}
+
+/*inputs container*/
+.inputs-container {
+  margin-top: 2rem;
+  width: 19vw;
+  height: 30vh;
+
+  display: grid;
+  gap: 0.5rem;
+  align-content: center;
+  justify-content: center;
+
+  & > * {
+    width: 17vw;
+    display: flex;
+    justify-content: space-between;
+  }
+}
+
+
+table {
+  width: 40vw;
+  height: 40vh;
+  border: 2px solid black;
+  letter-spacing: 1px;
+  overflow: scroll;
+}
+
+caption {
+  margin: 0 auto;
+  width: 16ch;
+}
+
 
 td {
   border: 1px solid rgb(160 160 160);
   padding: 8px 10px;
-}
-
-body {
-  font-family: sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 2em;
 }
 
 .add {
