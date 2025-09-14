@@ -1,4 +1,5 @@
 import "./new-style.css";
+import { validator } from "./validation-module";
 
 class GameEntry {
   #game;
@@ -35,7 +36,7 @@ class GameEntry {
   const addButton = document.querySelector(".add");
   const removeButton = document.querySelector(".remove");
 
-  const inputsAddHandler = function () {
+  const inputsAddHandler = () => {
     for (let key of inputsData) {
       userInputs[key.id] = key.value;
     }
@@ -55,14 +56,18 @@ class GameEntry {
 
     for (let data in gameData) {
       const td = document.createElement('td');
-      td.innerText = gameData[data];
+      if (gameData[data] == "") {
+        td.innerText = "N/A";
+      } else td.innerText = gameData[data]
       row.appendChild(td);
+      
     }
 
     const checkBox = document.createElement("input");
     checkBox.setAttribute("type", "checkbox");
     checkBox.id = newGame.getId();
     row.appendChild(checkBox);
+    inputsData.forEach(input => input.value = "");
   }
 
   function removeFromLibrary() {
@@ -75,8 +80,12 @@ class GameEntry {
     }
   }
 
-  addButton.addEventListener("click", inputsAddHandler);
+  addButton.addEventListener("click", (e) => {
+    if (validator()) inputsAddHandler();
+    else e.preventDefault();
+  });
 
   removeButton.addEventListener("click", removeFromLibrary);
+
 
 })();
