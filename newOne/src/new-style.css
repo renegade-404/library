@@ -61,50 +61,54 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
-table {
+.table-container {
   width: 40vw;
   height: 40vh;
-  border: 2px solid black;
-  letter-spacing: 1px;
-  overflow: scroll;
+  overflow: auto;
+  text-align: center;
+  border: 4px solid rgb(91, 6, 38);
+
+  & > h2 {
+    border-bottom: 4px solid rgb(91, 6, 38);
+  }
 }
 
-caption {
+table {
   margin: 0 auto;
-  width: 16ch;
+  width: 90%;
+  height: 4vh;
+  letter-spacing: 1px;
 }
-
 
 td {
-  border: 1px solid rgb(160 160 160);
-  padding: 8px 10px;
+  border-radius: 4px;
+  background-color: rgb(18, 17, 39);
+  color: white;
 }
 
 .add {
   padding: 4px;
   font-size: 1.2rem;
-  background-color: lightblue;
+  background-color: rgb(18, 17, 39);
   border-radius: 7px;
   transition: 0.4s;
+  color: white;
   
   &:hover {
-    background-color: orange;
-    color: white;
+    background-color: rgb(40, 38, 86);
   }
 }
 
 .remove {
   padding: 4px;
   font-size: 1.2rem;
-  background-color: orange;
+  background-color: rgb(91, 6, 38);
   color: white;
   border-radius: 7px;
   transition: 0.4s;
   
   &:hover {
-    background-color: lightblue;
-    color: black;
+    background-color: rgb(153, 13, 66);
   }
 }
 
@@ -130,20 +134,26 @@ button {
 input[type="checkbox"] {
   /*positioning*/
   position: absolute;
-  left: -20px;
-  bottom: 10px;
+  left: -25px;
+  bottom: 6px;
 
   /*appearance*/
   appearance: none;
   width: 1em;
   height: 1em;
-  border: 1px solid gray;
+  border: 2px solid gray;
+  border-radius: 4px;
+
+
+  &:checked {
+    border: none;
+  }
   
-  color: green;
 }
 
 input[type="checkbox"]::before {
-  content: "✔";
+  content: "✗";
+  color: rgb(91, 6, 38);
   position: absolute;
   font-size: 1.2em;
   right: -1px;
@@ -153,4 +163,5 @@ input[type="checkbox"]::before {
 
 input[type="checkbox"]:checked::before {
   visibility: visible;
+  background-color: rgb(232, 232, 9);
 }
